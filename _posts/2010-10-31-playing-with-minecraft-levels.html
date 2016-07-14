@@ -1,0 +1,17 @@
+---
+layout: post
+title: Playing with Minecraft levels
+date: '2010-10-31T21:25:00.000+13:00'
+author: andrew_s
+tags:
+- Development
+- C#
+- Modding
+- Minecraft
+- Gaming
+modified_time: '2010-10-31T21:25:14.069+13:00'
+blogger_id: tag:blogger.com,1999:blog-2599234214605427606.post-2704301932609864649
+blogger_orig_url: http://codercake.blogspot.com/2010/10/playing-with-minecraft-levels.html
+---
+
+Minecraft is currently the only PC game I play these days. All my other games are on consoles. If you don’t know what Minecraft is, you can start <a href="http://www.minecraft.net/" target="_blank">here</a>, but in a nutshell it is a freeform sandbox game set in a randomly generated world where you can mine and build.<br /><br />Having spent some time playing I’ve built up a complicated network of structures and tunnels in search of those elusive diamonds (have not found them yet). It would be nice to have an alternative way of visualizing that world, so with that in mind I ignored the other mods and tools out there and set about writing my own.<br /><br />The first tool is a NBT file to TXT converter. NBT stands for Named Binary Tags and is a format created by Notch for his Minecraft game. Following the <a href="http://www.minecraft.net/docs/NBT.txt" target="_blank">documentation</a> on the website I created a tool written in C# to read the compressed data files and turn them into a human readable format. The tool doesn’t understand what is in the files beyond the tags, which are essentially the metadata. The next step is to create something that understands the level format and is able to display the world in some way, such as a 2D map.<br /><br />The tool is reasonably simple. It opens the target file into an uncompressing GZip stream and starts creating Tags. The Tag abstract class takes care of parsing basic data types and parsing the Tag Type to get the actual Tag derived object created. Each derived type parses its payload of data, which in the case of a List or a Compound will consist of other tags read recursively. Once that is done I write everything to another file by recursively calling the tree of Tags.<br /><br />I should be doing some more Android programming but I have to admit little projects like this are more fun for me :).

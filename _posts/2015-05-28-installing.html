@@ -1,0 +1,12 @@
+---
+layout: post
+title: 
+date: '2015-05-29T09:58:00.000+12:00'
+author: andrew_s
+tags: 
+modified_time: '2015-05-29T09:58:36.620+12:00'
+blogger_id: tag:blogger.com,1999:blog-2599234214605427606.post-3691492692285233147
+blogger_orig_url: http://codercake.blogspot.com/2015/05/installing.html
+---
+
+<h2>Installing .NET 3.5 on Windows 8.1</h2>I've recently upgraded my desktop with a shiny new SSD. I opted for the full reinstall of Windows as the easiest option. Window updates took a while, but I was able to get upgraded to Windows 8.1 eventually.<br /><br />Unfortunately the next day I encountered a problem getting .NET 3.5 installed. The normal installers don't work because this is now a Windows Feature, but adding the feaure would always fail. After several different attempts at a fix, including trying to install from the command line via the original DVD I found a serverfault post <a href="https://superuser.com/questions/799687/net-3-5-installation-comes-up-with-error-0x800f0906-then-0x800f0081f-using-dis">here</a> which suggested uninstalling two updates KB2966826 and KB2966828. After these were removed the install worked.<br /><br />I don't know for certain that this was definitely the fix as I also did a disk cleanup which removed Windows.old which was the old Windows 8.0 directory. Both options are worth exploring.<br /><br /><br />

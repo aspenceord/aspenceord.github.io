@@ -1,0 +1,12 @@
+---
+layout: post
+title: Lazy List in C#
+date: '2012-06-23T07:15:00.001+12:00'
+author: andrew_s
+tags: 
+modified_time: '2012-06-23T07:15:23.386+12:00'
+blogger_id: tag:blogger.com,1999:blog-2599234214605427606.post-8221540653245592000
+blogger_orig_url: http://codercake.blogspot.com/2012/06/lazy-list-in-c.html
+---
+
+<p>I was playing around with some F# code and thinking about lazy lists in Haskell and how I could get them in F#. Well, since I know how to make an enumerable function in C# I decided to have a go making one in that instead.</p> <p><pre>void Main()<br />{<br />    foreach (var i in LazyRange(1, (n) =&gt; ++n).Take(10))<br />    {<br />        System.Console.WriteLine(i);<br />    }<br /><br />    System.Console.WriteLine();<br /><br />    var fizz = LazyRange(1, (n) =&gt; ++n)<br />        .TakeWhile(n =&gt; n &lt; 1000)<br />        .Where(n =&gt; n % 3 == 0 || n % 5 == 0)<br />        .Sum();<br />    <br />    System.Console.WriteLine(fizz);<br />}</pre><br /><p><pre>IEnumerable&lt;T&gt; LazyRange&lt;T&gt;(T start, Func&lt;T, T&gt; successor)<br />{<br />    T value = start;<br />    while (true)<br />    {<br />        yield return value;<br />        value = successor(value);<br />    }<br />}</pre><br /><p>To use it supply a starting value and a function to provide each successive value. Use Take or TakeWhile to limit the collection otherwise you will end up with an infinite list.</p>  

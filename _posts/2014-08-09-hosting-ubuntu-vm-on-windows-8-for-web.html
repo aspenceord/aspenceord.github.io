@@ -1,0 +1,12 @@
+---
+layout: post
+title: Hosting an Ubuntu VM on Windows 8 for Web Development
+date: '2014-08-10T08:40:00.000+12:00'
+author: andrew_s
+tags: 
+modified_time: '2014-08-10T08:40:37.257+12:00'
+blogger_id: tag:blogger.com,1999:blog-2599234214605427606.post-3640242594381942469
+blogger_orig_url: http://codercake.blogspot.com/2014/08/hosting-ubuntu-vm-on-windows-8-for-web.html
+---
+
+<h2>The VM</h2>After a little bit of playing around, I managed to settle on Ubuntu 13.10 running under VirtualBox. Unity is the default window manager for Ubuntu, and is a little heavy for a VM, but it runs ok. The host is Windows 8.1 which is my preferred desktop. I've tried Linux as a desktop OS in the past and I always found reasons to go back to Windows (such as Steam, and RAW handling for my Canon). I'm used to working on servers running Windows Server, but I don't have to pay for them, so Linux is a nice alternative to get used to, especially for web development, which is outside of my normal experience.<br /><br /><h3>Networking</h3>The main thing I wanted working was networking. The VM needed to reach the internet in order to download new packages etc, and I needed to access the VM from Windows. Accessing the Windows host from the Ubuntu guest was less important, but I got that working too.<br /><br />The default network adapter is a NAT setup. This allows access to the outside world, but there is no connection between the guest and the host. The first promising one was the Bridge network. I could access the VM from my Windows PC, but the VM couldn't access the host or the Internet. Luckily a reboot of the VM fixed that. Bridge networking now gives me host to guest, guest to host and guest to Internet.
